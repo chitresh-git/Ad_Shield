@@ -25,9 +25,10 @@ const Home = () => {
             setCssContent([]);
             setIsLoading(true);
 
-            const response = await axios.get('https://webscrap-dbir.onrender.com/fetch-website', {
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/fetch-website`, {
                 params: { url: websiteUrl },
-            });
+              });
+              
 
             setHtmlContent(response.data.htmlContent);
             setCssContent(response.data.cssContents || []);
@@ -151,54 +152,3 @@ const Home = () => {
 
 export default Home;
 
-
-// <div style={{ padding: '20px' }}>
-//   <h1>Website Text Scraper</h1>
-//   {isLoading && <LoadingBar isLoading={isLoading} />} {/* Use LoadingBar component */}
-//   <div style={{ marginBottom: '20px', transition: 'all 0.3s ease', maxHeight: isInputVisible ? '100px' : '0', overflow: 'hidden' }}>
-//     <form onSubmit={handleSubmit}>
-//       <input
-//         type="text"
-//         value={url}
-//         onChange={handleInputChange}
-//         placeholder="Enter website URL"
-//         style={{ width: 'calc(100% - 80px)', padding: '10px', fontSize: '16px' }}
-//         disabled={isLoading}
-//       />
-//       <button
-//         type="submit"
-//         style={{ padding: '10px 20px', fontSize: '16px', marginLeft: '10px' }}
-//         disabled={isLoading}
-//       >
-//         Fetch Text
-//       </button>
-//     </form>
-//   </div>
-//   {error && <div style={{ color: 'red', marginBottom: '20px' }}>{error}</div>}
-//   <style>
-//     {`
-//       img {
-//         max-width: 100%;
-//         height: auto;
-//       }
-//       .scraped-content {
-//         max-width: 100%;
-//         overflow-x: auto;
-//       }
-//     `}
-//   </style>
-//   <div
-//     id="scraped-content"
-//     className="scraped-content"
-//     style={{ background: '#f4f4f4', padding: '10px', borderRadius: '5px' }}
-//     dangerouslySetInnerHTML={{ __html: htmlContent }}
-//   />
-//   {!isInputVisible && (
-//     <button
-//       style={{ position: 'absolute', top: '20px', right: '20px', padding: '10px', fontSize: '16px' }}
-//       onClick={handleFetchNewUrl}
-//     >
-//       Fetch New URL
-//     </button>
-//   )}
-// </div>
