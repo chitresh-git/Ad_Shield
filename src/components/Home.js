@@ -122,7 +122,7 @@ const Home = () => {
                         className="form-button"
                         disabled={isLoading}
                     >
-                        {isLoading ? 'Fetching...' : 'Fetch Text'}
+                        {isLoading ? 'Fetching...' : 'Fetch Site'}
                     </button>
 
 
